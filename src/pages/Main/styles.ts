@@ -1,0 +1,111 @@
+import styled, { css, keyframes } from "styled-components";
+
+import { ButtonProps, FormProps } from "../../types/stylesTypes";
+
+export const Container = styled.div`
+  max-width: 700px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    svg {
+      margin-right: 10px;
+    }
+  }
+`;
+
+export const Form = styled.form<FormProps>`
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+
+  div {
+    display: flex;
+    flex-direction: row;
+  }
+
+  input {
+    flex: 1;
+    border: 1px solid;
+    border-color: ${props => (props.error ? "red" : "#eee")};
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: 300ms all linear;
+  }
+
+  ${props =>
+    props.error &&
+    css`
+      span {
+        font-size: 12px;
+        color: #ff0000;
+        margin: 5px 0px 0px 10px;
+      }
+    `}
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const SubmitButton = styled.button<ButtonProps>`
+  background-color: #7159c1;
+  border: 0;
+  padding: 0px 15px;
+  margin-left: 10px;
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  ${props =>
+    props.loading &&
+    css`
+      svg {
+        animation: ${rotate} 2s linear infinite;
+      }
+    `}
+`;
+
+export const List = styled.ul`
+  list-style: none;
+  margin-top: 30px;
+
+  li {
+    padding: 15px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & + li {
+      border-top: 1px solid #eee;
+    }
+
+    a {
+      color: #7159c1;
+      text-decoration: none;
+    }
+  }
+`;
